@@ -8,7 +8,7 @@ const About = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row mx-4 md:mx-44 items-center py-20 px-6 text-black gap-10">
+        <div id="about" className="flex flex-col md:flex-row mx-4 md:mx-44 items-center py-20 px-6 text-black gap-10">
             <div className="w-full md:w-1/3 border-solid border-2 rounded-lg p-10">
                 <img
                     src="src/assets/Profile.jpeg"

@@ -16,7 +16,7 @@ const ResumeItem = ({ year, title, subtitle }) => (
 
 const ResumeSection = () => {
   return (
-    <div className="bg-[#E6EAEE] py-16 px-4">
+    <div id='resume' className="bg-[#E6EAEE] py-16 px-4">
       <div className="max-w-6xl mx-auto ">
         <h2 className="text-center text-black mb-2">EDUCATION & EXPERIENCE</h2>
         <h1 className="text-center text-4xl text-black font-bold mb-12">Professional Resume</h1>
