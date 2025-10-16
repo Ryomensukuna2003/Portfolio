@@ -1,7 +1,7 @@
 import SleepingCat from "./components/ui/neko";
 import { ChevronLeft } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 export default function Footer({ setCurrentPage }) {
   const [warning, setWarning] = useState(false);
