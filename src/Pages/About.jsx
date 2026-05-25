@@ -1,6 +1,23 @@
 import GridPattern from "../components/ui/grid";
 import TextAnimate from "../components/ui/text-animate";
 
+const skills = [
+  { name: "JavaScript", slug: "javascript" },
+  { name: "TypeScript", slug: "typescript" },
+  { name: "React", slug: "react" },
+  { name: "Next.js", slug: "nextdotjs" },
+  { name: "Node.js", slug: "nodedotjs" },
+  { name: "Express", slug: "express" },
+  { name: "PostgreSQL", slug: "postgresql" },
+  { name: "MongoDB", slug: "mongodb" },
+  { name: "Docker", slug: "docker" },
+  { name: "Tailwind", slug: "tailwindcss" },
+  { name: "Socket.IO", slug: "socketdotio" },
+  { name: "C++", slug: "cplusplus" },
+  { name: "Git", slug: "git" },
+  { name: "Vite", slug: "vite" },
+];
+
 const About = () => {
   return (
     <div className="h-full no-scrollbar overflow-y-auto bg-black">
@@ -34,6 +51,32 @@ const About = () => {
                 </span>
               </a>
             </p>
+          </div>
+
+          <div className="mt-10 md:mt-16 max-w-4xl mx-auto md:mx-0 w-full">
+            <h3 className="font-mono italic text-zinc-400 text-sm sm:text-base mb-4 md:mb-6">
+              // stack
+            </h3>
+            <ul className="flex flex-wrap gap-x-8 gap-y-6 sm:gap-x-10 sm:gap-y-8">
+              {skills.map((skill) => (
+                <li
+                  key={skill.slug}
+                  className="group flex items-center gap-3"
+                  title={skill.name}
+                >
+                  <img
+                    src={`https://cdn.simpleicons.org/${skill.slug}/ffffff`}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="w-5 h-5 sm:w-6 sm:h-6 opacity-60 group-hover:opacity-100 transition-opacity"
+                  />
+                  <span className="font-mono text-sm sm:text-base text-zinc-400 group-hover:text-white transition-colors">
+                    {skill.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

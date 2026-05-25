@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Work from "./Pages/Work";
-import Contact from "./Pages/Contact";
 import RootLayout from "./layout";
 import Footer from "./Footer";
+
+const Home = lazy(() => import("./Pages/Home"));
+const About = lazy(() => import("./Pages/About"));
+const Work = lazy(() => import("./Pages/Work"));
+const Contact = lazy(() => import("./Pages/Contact"));
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -28,7 +29,11 @@ export default function App() {
   return (
     <RootLayout>
       <div className="flex flex-col w-screen h-screen">
-        <div className="flex-1 overflow-hidden">{renderPage()}</div>
+        <div className="flex-1 overflow-hidden">
+          <Suspense fallback={<div className="h-full bg-black" />}>
+            {renderPage()}
+          </Suspense>
+        </div>
         <Footer setCurrentPage={setCurrentPage} />
       </div>
     </RootLayout>

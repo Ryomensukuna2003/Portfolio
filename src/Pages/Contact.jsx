@@ -1,5 +1,5 @@
 import GridPattern from "../components/ui/grid";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { FileText, Github, Linkedin, Mail } from "lucide-react";
 import TextAnimate from "../components/ui/text-animate";
 
 const Contact = () => {
@@ -44,6 +44,17 @@ const Contact = () => {
                 className="text-base sm:text-lg md:text-xl break-all hover:underline"
               >
                 mshivanshu1264@gmail.com
+              </a>
+            </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 py-4 sm:py-6 md:py-10">
+              <FileText className="h-5 w-5 sm:h-6 sm:w-6" />
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base sm:text-lg md:text-xl break-all hover:underline"
+              >
+                resume.pdf
               </a>
             </div>
           </div>

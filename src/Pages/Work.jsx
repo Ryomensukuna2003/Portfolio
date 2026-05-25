@@ -102,7 +102,7 @@ const Work = () => {
                 {project.id}
               </div>
               <div className="pl-8 sm:pl-8">
-                <div className="absloute">
+                <div>
                   <h2 className="text-3xl sm:text-4xl md:text-5xl">
                     {project.title}
                   </h2>

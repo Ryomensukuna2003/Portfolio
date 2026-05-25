@@ -152,6 +152,13 @@ button:focus-visible {
   animation: fade-in 2s;
 }
 
+/* Only hide the cursor on devices that have a fine pointer (mouse) */
+@media (pointer: fine) {
+  .cursor-none-fine {
+    cursor: none;
+  }
+}
+
 .linkWithCoolUnderline {
   @apply text-lg md:text-xl  md:p-15 border-zinc-800 no-underline cursor-none overflow-hidden relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-white after:opacity-100 after:-translate-x-full after:transition-transform after:duration-300 hover:after:translate-x-0 focus:after:translate-x-0;
 }

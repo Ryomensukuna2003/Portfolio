@@ -4,24 +4,25 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export default function Footer({ setCurrentPage }) {
-  const [warning, setWarning] = useState(false);
+  const [warned, setWarned] = useState(false);
   const handleNavigation = (page) => {
     setCurrentPage(page);
   };
   const displayPopover = () => {
-    toast.info("Don't disturb her lil nigga",{
+    if (warned) return;
+    toast.info("Shhh… she's sleeping.", {
       position: "top-center",
-      action:{
-        label: "Understood",
+      action: {
+        label: "Got it",
         onClick: () => {
-          setWarning(true);          
-          toast.success("Good boy",{
+          setWarned(true);
+          toast.success("Thanks!", {
             duration: 1000,
             position: "top-center",
           });
           toast.dismiss();
-        }
-      }
+        },
+      },
     });
   };
   return (
