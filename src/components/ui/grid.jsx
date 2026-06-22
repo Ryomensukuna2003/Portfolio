@@ -20,8 +20,7 @@ export function GridPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30 [mask-image:radial-gradient(2000px_circle_at_center,white,transparent)]",
-        "absolute inset-0 w-screen h-screen ",
+        "pointer-events-none fixed inset-0 h-screen w-screen fill-gray-400/30 stroke-gray-400/30 [mask-image:radial-gradient(1400px_circle_at_center,white,transparent)]",
         className,
       )}
       {...props}

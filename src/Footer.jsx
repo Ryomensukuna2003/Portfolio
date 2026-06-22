@@ -1,13 +1,18 @@
-import SleepingCat from "./components/ui/neko";
+import { NavLink } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import SleepingCat from "./components/ui/neko";
 
-export default function Footer({ setCurrentPage }) {
+const navItems = [
+  { to: "/about", label: "about" },
+  { to: "/work", label: "work" },
+  { to: "/contact", label: "contact" },
+];
+
+export default function Footer() {
   const [warned, setWarned] = useState(false);
-  const handleNavigation = (page) => {
-    setCurrentPage(page);
-  };
+
   const displayPopover = () => {
     if (warned) return;
     toast.info("Shhh… she's sleeping.", {
@@ -16,55 +21,62 @@ export default function Footer({ setCurrentPage }) {
         label: "Got it",
         onClick: () => {
           setWarned(true);
-          toast.success("Thanks!", {
-            duration: 1000,
-            position: "top-center",
-          });
+          toast.success("Thanks!", { duration: 1000, position: "top-center" });
           toast.dismiss();
         },
       },
     });
   };
-  return (
-    <div className="relative">
-      <div className="absolute   right-5 bottom-13 md:bottom-33" onMouseEnter={displayPopover} >
 
-        <SleepingCat />
-      </div>
-      <div className="text-white w-full bg-black border-t border-zinc-800 font-mono italic">
-        <div className="flex justify-between md:flex-row  md:items-center">
-          <div className="p-4 md:p-14 text-center md:text-left">
-            <button
-              onClick={() => handleNavigation("home")}
-              className="text-lg md:text-xl cursor-none bg-transparent border-none text-white p-0 outline-none focus:outline-none"
-            >
-              <p className="hover:underline decoration-white">
-                <ChevronLeft size={30} className="hover:stroke-4" />
-              </p>
-            </button>
-          </div>
-          <div className="flex md:flex-row text-center items-center">
-            <button
-              onClick={() => handleNavigation("about")}
-              className="linkWithCoolUnderline h-full border-zinc-800 border-l-2 no-underline md:border-l-2 bg-transparent  text-white p-0 px-4 md:px-8 outline-none focus:outline-none active:outline-none focus:ring-0 active:ring-0"
-            >
-              <p className="hover:no-underline">about</p>
-            </button>
-            <button
-              onClick={() => handleNavigation("work")}
-              className="linkWithCoolUnderline h-full bg-transparent border-none text-white p-0 px-4 md:px-8 outline-none focus:outline-none active:outline-none focus:ring-0 active:ring-0"
-            >
-              <p className="hover:no-underline decoration-white">work</p>
-            </button>
-            <button
-              onClick={() => handleNavigation("contact")}
-              className="linkWithCoolUnderline h-full bg-transparent border-none text-white p-0 px-4 md:px-8 outline-none focus:outline-none active:outline-none focus:ring-0 active:ring-0"
-            >
-              <p className="hover:no-underline decoration-white">contact</p>
-            </button>
-          </div>
+  return (
+    <nav
+      aria-label="Primary"
+      className="relative z-30 w-full border-t border-zinc-800 bg-black font-mono text-white"
+    >
+      <div className="flex items-stretch justify-between">
+        <NavLink
+          to="/"
+          aria-label="Home"
+          className="group flex items-center px-4 py-5 outline-none md:px-14 md:py-8"
+        >
+          <ChevronLeft
+            size={28}
+            className="transition-colors group-hover:text-signal group-focus-visible:text-signal"
+          />
+        </NavLink>
+
+        <div className="flex items-stretch">
+          {navItems.map(({ to, label }) => {
+            const isContact = label === "contact";
+            return (
+              <div key={to} className="relative flex items-stretch">
+                {/* Cat sleeps centered just above the contact button's top border */}
+                {isContact && (
+                  <div
+                    className="pointer-events-auto absolute bottom-full left-1/2 z-50 -translate-x-1/2 -mb-px"
+                    onMouseEnter={displayPopover}
+                  >
+                    <SleepingCat />
+                  </div>
+                )}
+                <NavLink
+                  to={to}
+                  className={({ isActive }) =>
+                    [
+                      "linkWithCoolUnderline flex items-center border-l border-zinc-800 px-4 text-lg italic outline-none transition-colors md:px-10 md:text-xl",
+                      isActive
+                        ? "text-signal after:translate-x-0"
+                        : "text-white hover:text-signal",
+                    ].join(" ")
+                  }
+                >
+                  {label}
+                </NavLink>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

@@ -1,6 +1,8 @@
 # Portfolio
 
-A minimalist portfolio website built with React and Tailwind featuring interactive cursor tracking, animated text reveals, and blah blah blah.... 
+A minimalist, terminal-flavored portfolio built with React, React Router, and
+Tailwind v4. Features a crosshair cursor, staggered text reveals, hover link
+previews, real client-side routing, and full keyboard/reduced-motion support.
 
 ## Setup and Development
 
@@ -19,11 +21,12 @@ git clone https://github.com/Ryomensukuna2003/Portfolio && cd Portfolio && pnpm 
 
 ```
 src/
-├── assets/            # Static assets, images, and fonts
-├── components/        # Reusable UI components
-│   └── ui/            # Core UI components
-├── hooks/             # Custom React hooks
-├── lib/               # Utility functions
-└── Pages/             # Main page components
+├── assets/            # Images and the GeistMono font
+├── components/ui/     # Reusable UI components (grid, text-animate, link-preview, …)
+├── lib/               # Utility functions (cn)
+├── Pages/             # Route components (Home, About, Work, Contact, NotFound)
+├── layout.jsx         # Root layout: custom cursor, analytics, toaster
+├── Footer.jsx         # Primary navigation
+└── App.jsx            # Routes
 ```
 

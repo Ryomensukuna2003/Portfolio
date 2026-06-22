@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
         />
         <div
           ref={dotRef}
-          className="fixed top-0 left-0 w-2 h-2 bg-white rounded-xs pointer-events-none z-50 hidden sm:block will-change-transform"
+          className="fixed top-0 left-0 w-2 h-2 bg-signal rounded-xs pointer-events-none z-50 hidden sm:block will-change-transform"
         />
       </div>
       {children}

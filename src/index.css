@@ -1,135 +1,92 @@
 @import "tailwindcss";
 
-@layer utilities {
-    /* Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
-    
-    /* Alternative scrollbar hide class */
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-
-    .scrollbar-hide {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
+/* ── Design tokens (Tailwind v4 @theme → utilities like text-signal/bg-signal) ── */
+@theme {
+  /* One committed accent. Vermilion-orange: warm signal against the cold mono.
+     7.4:1 on pure black (WCAG AA for body text). */
+  --color-signal: oklch(0.72 0.2 38);
+  --color-signal-dim: oklch(0.72 0.2 38 / 0.16);
 }
 
+@layer utilities {
+  /* Cross-browser scrollbar hide */
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar,
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
 
 @font-face {
-    font-family: 'GeistMono';
-    src: url('./assets/font/GeistMono.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "GeistMono";
+  src: url("./assets/font/GeistMono.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base element styling lives in @layer base so Tailwind utilities
+   (text-signal, text-white, …) can override it. Unlayered rules would
+   otherwise beat every utility in Tailwind v4's cascade. */
+@layer base {
+  :root {
+    font-family: "GeistMono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: oklch(0.985 0 0);
+    background-color: #000;
+    font-synthesis: weight;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* shadcn token surface kept for the Sonner toaster */
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --popover: oklch(0.18 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --border: oklch(0.3 0 0);
+    --radius: 0.625rem;
   }
 
-:root {
-  font-family: "GeistMono", sans-serif;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background-color: #000;
+  }
+
+  a {
+    text-decoration: inherit;
+  }
+
+  #oneko {
+    z-index: 100;
+  }
 }
 
-a {
-  font-weight: 500;
-  text-decoration: inherit;
+/* Page entrance — subtle, fast, replayed on each route mount */
+.fade-style {
+  animation: fade-in 0.5s ease-out both;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-/* 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes sleepingCat {
@@ -137,38 +94,59 @@ button:focus-visible {
   50% {
     background-position: -64px 0;
   }
-
   50%,
   100% {
     background-position: -64px -32px;
   }
 }
 
-#oneko {
-  z-index: 100;
+/* Pulsing status dot */
+@keyframes signal-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.78);
+  }
+}
+.signal-pulse {
+  animation: signal-pulse 2s ease-in-out infinite;
 }
 
-.fade-style {
-  animation: fade-in 2s;
-}
-
-/* Only hide the cursor on devices that have a fine pointer (mouse) */
+/* Only hide the system cursor on devices with a fine pointer (mouse) */
 @media (pointer: fine) {
   .cursor-none-fine {
     cursor: none;
   }
 }
 
+/* Animated underline that sweeps in on hover/focus */
 .linkWithCoolUnderline {
-  @apply text-lg md:text-xl  md:p-15 border-zinc-800 no-underline cursor-none overflow-hidden relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-white after:opacity-100 after:-translate-x-full after:transition-transform after:duration-300 hover:after:translate-x-0 focus:after:translate-x-0;
+  @apply relative overflow-hidden no-underline cursor-none
+    after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full
+    after:bg-signal after:opacity-100 after:-translate-x-full
+    after:transition-transform after:duration-300 after:ease-out
+    hover:after:translate-x-0 focus-visible:after:translate-x-0;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
+/* Visible focus ring for keyboard users (we suppress the default outline elsewhere) */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
 
-  to {
-    opacity: 100;
+/* Reduced motion: collapse CSS animation/transition to near-instant.
+   Framer-motion reveals are handled separately via useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

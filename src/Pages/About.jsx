@@ -20,44 +20,57 @@ const skills = [
 
 const About = () => {
   return (
-    <div className="h-full no-scrollbar overflow-y-auto bg-black">
-      <div className="bg-black text-white grid grid-cols-12 relative min-h-full">
+    <div className="no-scrollbar h-full overflow-y-auto bg-black">
+      <div className="relative grid min-h-full grid-cols-12 bg-black text-white">
         <GridPattern strokeDasharray="2" width={100} height={200} />
 
-        <div className="col-span-12 flex flex-col  p-4 sm:p-6 md:p-12 lg:p-16 z-10">
+        <div className="fade-style z-10 col-span-12 flex flex-col p-4 sm:p-6 md:p-12 lg:p-16">
           <TextAnimate
             text="ABOUT"
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-center md:text-left"
+            as="h1"
+            className="text-6xl leading-[0.95] sm:text-7xl md:text-8xl lg:text-9xl"
             type="shiftInUp"
           />
-          <div className="mt-4 md:mt-8 text-center md:text-left fade-style max-w-4xl mx-auto md:mx-0">
-            <p className="text-base sm:text-lg md:text-lg lg:text-xl mb-3 md:mb-4">
-            Computer Science student focused on building efficient, user-friendly applications. Skilled in JavaScript, React, Node.js, PostgreSQL, and MongoDB. ᕙ(`▽´)ᕗ
+
+          <div className="mt-6 max-w-2xl md:mt-10">
+            <p className="mb-4 text-base leading-relaxed text-zinc-300 sm:text-lg md:mb-5 md:text-xl">
+              Software developer focused on building efficient,
+              user-friendly applications. Skilled in JavaScript, React, Node.js,
+              PostgreSQL, and MongoDB. ᕙ(`▽´)ᕗ
             </p>
-            <p className="text-base sm:text-lg md:text-lg lg:text-xl mb-3 md:mb-4">
-              I take my work seriously and approach every project with a sense
-              of purpose and professionalism. Outside of coding, I like to
-              unwind — and yes, the seal is my spirit animal 🦭.
+            <p className="mb-4 text-base leading-relaxed text-zinc-300 sm:text-lg md:mb-5 md:text-xl">
+              I take my work seriously and approach every project with a sense of
+              purpose and professionalism. Outside of coding, I like to unwind —
+              and yes, the seal is my spirit animal 🦭.
             </p>
-            <p className="text-base sm:text-lg md:text-lg lg:text-xl mb-3 md:mb-4">
-              Currently working as a Technical Staff Intern at{" "}
+            <p className="text-base leading-relaxed text-zinc-300 sm:text-lg md:text-xl">
+              Currently an SDE1 at{" "}
+              <a
+                href="https://convegenius.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono italic text-signal underline decoration-signal/40 underline-offset-4 transition-colors hover:decoration-signal"
+              >
+                ConveGenius
+              </a>
+              , previously a Technical Staff Intern at{" "}
               <a
                 href="https://devrev.ai"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="font-mono italic text-zinc-300 underline decoration-zinc-600 underline-offset-4 transition-colors hover:text-signal hover:decoration-signal"
               >
-                <span className="text-slate-300 underline font-mono italic break-words hover:text-white transition-colors">
-                   DevRev
-                </span>
+                DevRev
               </a>
+              .
             </p>
           </div>
 
-          <div className="mt-10 md:mt-16 max-w-4xl mx-auto md:mx-0 w-full">
-            <h3 className="font-mono italic text-zinc-400 text-sm sm:text-base mb-4 md:mb-6">
+          <div className="mt-12 w-full max-w-2xl md:mt-20">
+            <h2 className="mb-5 font-mono text-sm italic text-zinc-500 sm:text-base md:mb-7">
               // stack
-            </h3>
-            <ul className="flex flex-wrap gap-x-8 gap-y-6 sm:gap-x-10 sm:gap-y-8">
+            </h2>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 sm:gap-y-6">
               {skills.map((skill) => (
                 <li
                   key={skill.slug}
@@ -65,13 +78,13 @@ const About = () => {
                   title={skill.name}
                 >
                   <img
-                    src={`https://cdn.simpleicons.org/${skill.slug}/ffffff`}
+                    src={`https://cdn.simpleicons.org/${skill.slug}/a1a1aa`}
                     alt=""
                     aria-hidden="true"
                     loading="lazy"
-                    className="w-5 h-5 sm:w-6 sm:h-6 opacity-60 group-hover:opacity-100 transition-opacity"
+                    className="h-5 w-5 opacity-70 transition group-hover:opacity-100 sm:h-6 sm:w-6"
                   />
-                  <span className="font-mono text-sm sm:text-base text-zinc-400 group-hover:text-white transition-colors">
+                  <span className="font-mono text-sm text-zinc-400 transition-colors group-hover:text-white sm:text-base">
                     {skill.name}
                   </span>
                 </li>
